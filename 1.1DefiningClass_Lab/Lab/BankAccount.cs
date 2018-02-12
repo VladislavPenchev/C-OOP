@@ -1,5 +1,7 @@
 ﻿
-    public class BankAccount
+using System;
+
+public class BankAccount
     {
         private int _id;
 
@@ -33,6 +35,10 @@
 
             set
             {
+            if (this._balance + value < 0)
+            {
+                throw new ArgumentException("Balance can not be negative");
+            }
                 this._balance = value;
             }
         }
@@ -51,7 +57,7 @@
 
         public override string ToString()
         {
-            return $"Account {this._id}, balance {this._balance}";
+            return $"Account ID{this._id}, balance {this._balance:F2}";
         }
     }
 

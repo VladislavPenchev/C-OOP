@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 public class StartUp
@@ -26,13 +25,11 @@ public class StartUp
         //Task3
         Dictionary<int, BankAccount> account = new Dictionary<int, BankAccount>();
 
-        bool isTrue = true;
+        string input = string.Empty;
 
-        while (isTrue)
+        while ((input = Console.ReadLine()) != "End")
         {
-            string command = Console.ReadLine();
-
-            string[] cmdArgs = command.Split();
+            var cmdArgs = input.Split();
 
             string cmdType = cmdArgs[0];
 
@@ -51,7 +48,6 @@ public class StartUp
                     Print(cmdArgs, account);
                     break;
                 default:
-                    isTrue = false;
                     break;
             }
 
@@ -80,57 +76,58 @@ public class StartUp
     private static void Deposit(string[] cmdArg, Dictionary<int, BankAccount> accounts)
     {
         int id = int.Parse(cmdArg[1]);
+        double amount = double.Parse(cmdArg[2]);
 
-        if (accounts[id].ID == 0)
+        if (accounts.ContainsKey(id))
         {
-            Console.WriteLine("Account does not exist");
+            accounts[id].Deposit(amount);
         }
         else
         {
-            foreach (var acc in accounts)
-            {
-                if (acc.Key == id)
-                {
-                    acc.Value.Deposit(double.Parse(cmdArg[2]));
-                }
+            Console.WriteLine("Account does not exist");
+        }
 
-            }
-        }       
+             
     }
 
     private static void Withdraw(string[] cmdArg, Dictionary<int,BankAccount> accounts)
     {
         int id = int.Parse(cmdArg[1]);
+        double amount = double.Parse(cmdArg[2]);
 
-        if (accounts[id].ID == 0)
+        if (accounts.ContainsKey(id))
         {
-            Console.WriteLine("Account does not exist");
+            if (accounts[id].Balance < amount)
+            {
+                Console.WriteLine("Insufficient balance");
+            }
+            else
+            {
+                accounts[id].Withdraw(amount);
+            }
         }
         else
         {
-            foreach (var acc in accounts)
-            {
-                if (acc.Key == id)
-                {
-                    if (acc.Value.Balance < double.Parse(cmdArg[2]))
-                    {
-                        Console.WriteLine("Insufficient balance");
-                    }
-                    else
-                    {
-                        acc.Value.Withdraw(double.Parse(cmdArg[2]));
-                    }
-                    
-                }
-            }
+            Console.WriteLine("Account does not exist");
         }
+        
                 
     }
 
     private static void Print(string[] cmdArg, Dictionary<int, BankAccount> accounts)
     {
         int id = int.Parse(cmdArg[1]);
-        Console.WriteLine($"Account ID{accounts[id].ID},balance{accounts[id].Balance}");
+
+
+        if (accounts.ContainsKey(id))
+        {
+            Console.WriteLine(accounts[id].ToString());
+        }
+        else
+        {
+            Console.WriteLine("Account does not exist");
+        }
+        
     }
 }
 

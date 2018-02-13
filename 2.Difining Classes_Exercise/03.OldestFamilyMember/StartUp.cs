@@ -13,12 +13,12 @@ public class Program
             {
                 var personInfo = Console.ReadLine().Split();
 
-            Person person = new Person();
+                Person person = new Person();
 
-            string personName = person.Name;
-                int personAge = person.Age;
+                person.Name = personInfo[0];
+                person.Age = int.Parse(personInfo[1]);
 
-            family.AddMember(person);          
+                family.AddMember(person);          
             
             }
 

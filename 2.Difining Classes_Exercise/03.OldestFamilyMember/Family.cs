@@ -1,10 +1,16 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 public class Family
     {
 
     private List<Person> list;
+
+    public Family()
+    {
+        this.list = new List<Person>();
+    }
 
     public void AddMember(Person member)
     {
@@ -13,10 +19,31 @@ public class Family
 
     public Person GetOldestMember()
     {
-        list.Sort();
+        for (int i = 0; i < list.Count - 1; i++)
+        {
+            if (list[i].Age > list[i + 1].Age)
+            {
+                continue;
+            }
+            else if (list[i].Age < list[i + 1].Age)
+            {
+                this.Swap(list, i);
+                GetOldestMember();
+            }
+            else
+            {
+                //ravni
+            }
+        }
 
-        return list[list.Count - 1];
+        return list[0];
     }
 
+    private void Swap(List<Person> list,int i)
+    {
+        Person temp = list[i];
+        list[i] = list[i + 1];
+        list[i + 1] = temp;
     }
+}
 

@@ -7,6 +7,7 @@ public class Family
 
     private List<Person> list;
 
+
     public Family()
     {
         this.list = new List<Person>();
@@ -36,6 +37,8 @@ public class Family
             }
         }
 
+        
+
         return list[0];
     }
 
@@ -45,5 +48,36 @@ public class Family
         list[i] = list[i + 1];
         list[i + 1] = temp;
     }
+
+    public void GetAllPersonAfter30()
+    {
+        for (int i = 0; i < list.Count - 1; i++)
+        {
+            if (list[i].Age > list[i + 1].Age)
+            {
+                continue;
+            }
+            else if (list[i].Age < list[i + 1].Age)
+            {
+                this.Swap(list, i);
+                GetOldestMember();
+            }
+            else
+            {
+                //ravni
+            }
+        }
+
+        foreach (var person in list)
+        {
+            
+            if (person.Age > 30)
+            {
+                Console.WriteLine($"{person.Name} {person.Age}");
+            }
+        }
+        
+    }
+
 }
 

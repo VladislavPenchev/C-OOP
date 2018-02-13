@@ -22,9 +22,14 @@ public class Program
             
             }
 
-            Person oldestPerson = family.GetOldestMember();
+            //Task3
 
-            Console.WriteLine($"{oldestPerson.Name} {oldestPerson.Age}");
+            //Person oldestPerson = family.GetOldestMember();
+
+            //Console.WriteLine($"{oldestPerson.Name} {oldestPerson.Age}");
+
+        //Task4
+        family.GetAllPersonAfter30();
 
         }
     }

@@ -10,7 +10,8 @@
         {
             List<Employee> listOfEmployees = new List<Employee>();
             Dictionary<string, double> dictionaryOfDepartments = new Dictionary<string, double>();
-
+            
+            
             int numberOfEmployees = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < numberOfEmployees; i++)
@@ -45,7 +46,7 @@
                     }
                 }
                 else
-                {
+                {                    
                     newEmp.Name = informationForEmployee[0];
                     newEmp.Salary = double.Parse(informationForEmployee[1]);
                     newEmp.Position = informationForEmployee[2];
@@ -60,42 +61,46 @@
             }
 
 
-            for (var i = 0; i < listOfEmployees.Count - 1; i++)
+            for (var i = 0; i < listOfEmployees.Count; i++)
             {
-                double heighestAverageSalary = 0;
+                double highestAverageSalary = 0;
 
                 if (dictionaryOfDepartments.Count != 0 && dictionaryOfDepartments.ContainsKey(listOfEmployees[i].Department))
                 {
-                    heighestAverageSalary += listOfEmployees[i].Salary;
+                    highestAverageSalary += listOfEmployees[i].Salary;
 
-                    dictionaryOfDepartments[listOfEmployees[i].Department] += heighestAverageSalary;
+                    dictionaryOfDepartments[listOfEmployees[i].Department] += highestAverageSalary;
 
                 }
                 else
                 {
-                    dictionaryOfDepartments.Add(listOfEmployees[i].Department, listOfEmployees[i].Salary);
+                    //crate department in dictionary
+                    dictionaryOfDepartments.Add(listOfEmployees[i].Department, 0);
 
-                    heighestAverageSalary += listOfEmployees[i].Salary;
+                    highestAverageSalary = listOfEmployees[i].Salary;
 
-                    dictionaryOfDepartments[listOfEmployees[i].Department] += heighestAverageSalary;
+                    dictionaryOfDepartments[listOfEmployees[i].Department] += highestAverageSalary;
                 }
             }
 
 
             var ordedDic = dictionaryOfDepartments.OrderByDescending(x => x.Value);
 
+
+            Print(dictionaryOfDepartments, listOfEmployees);
         }
 
-        public void Print(Dictionary<string, double> dicOfDep, List<Employee> listOfEmp)
+        public static void Print(Dictionary<string, double> dicOfDep, List<Employee> listOfEmp)
         {
             Console.WriteLine($"Highest Average Salary: {dicOfDep.First().Key}");
-
+ 
             foreach (var emp in listOfEmp)
             {
                 if (emp.Department == dicOfDep.First().Key)
                 {
-                    Console.WriteLine($@"{emp.Name} {emp.Salary} {emp.Email == null ? emp.Email : "dasda"  } {emp.Age}");
-                    //string format
+                    //Console.WriteLine($@"{emp.Name} {emp.Salary} {emp.Email == null ? emp.Email : "dasda"  } {emp.Age}");
+                    
+                    Console.WriteLine("{0} {1} {2} {3}",emp.Name,emp.Salary, emp.Email != null ? emp.Email : "n/a", emp.Age != 0 ? emp.Age : -1);
                 }
 
             }

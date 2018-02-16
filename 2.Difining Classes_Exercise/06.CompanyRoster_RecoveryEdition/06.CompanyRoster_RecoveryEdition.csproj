@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{239ECDBA-482C-4520-B13C-10A195B1E451}</ProjectGuid>
+    <ProjectGuid>{F8562096-C770-4334-BF04-70B071C4327D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_06.Company_Roster</RootNamespace>
-    <AssemblyName>06.Company Roster</AssemblyName>
+    <RootNamespace>_06.CompanyRoster_RecoveryEdition</RootNamespace>
+    <AssemblyName>06.CompanyRoster_RecoveryEdition</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

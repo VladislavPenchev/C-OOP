@@ -1,4 +1,6 @@
-﻿namespace ClassBox
+﻿using System;
+
+namespace ClassBox
 {
     public class Box
     {
@@ -8,12 +10,53 @@
 
         public Box(double length,double width, double height)
         {
-            this._length = length;
-            this._width = width;
-            this._height = height;
+            this.Length = length;
+            this.Width = width;
+            this.Height = height;
+        }
+        
+        public double Length
+        {
+            get { return this._length; }
+            private set
+            {
+                
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"{nameof(Length)} cannot be zero or negative.");
+                }
+
+                this._length = value;
+
+            }
         }
 
+        private double Width
+        {
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"{nameof(Width)} cannot be zero or negative.");
+                }
 
+                this._width = value;
+            }
+        }
+
+        private double Height
+        {
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"{nameof(Height)} cannot be zero or negative.");
+                }
+
+                this._height = value;
+            }
+        }
+        
 
         public double SurfaceArea()
         {

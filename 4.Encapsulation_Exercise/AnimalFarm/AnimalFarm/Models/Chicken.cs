@@ -7,13 +7,13 @@
         public const int MinAge = 0;
         public const int MaxAge = 15;
 
-        protected string name;
-        internal int age;
+        private string name;
+        private int age;
 
-        internal Chicken(string name, int age)
+        public Chicken(string name, int age)
         {
-            this.name = name;
-            this.age = age;
+            this.Name = name;
+            this.Age = age;
         }
 
         public string Name
@@ -25,6 +25,11 @@
 
             internal set
             {
+                if (String.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException($"{nameof(this.Name)} cannot be empty.");
+                }
+
                 this.name = value;
             }
         }
@@ -38,6 +43,11 @@
 
             protected set
             {
+                if (value < MinAge || value > MaxAge)
+                {
+                    throw new ArgumentException($"{this.Age} should be between 0 and 15.");
+                }
+
                this.age = value;
             }
         }
@@ -47,7 +57,7 @@
             return this.CalculateProductPerDay();
         }
 
-        public double CalculateProductPerDay()
+        private double CalculateProductPerDay()
         {
             switch (this.Age)
             {

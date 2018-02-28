@@ -21,7 +21,6 @@
 
 
             int diffrenceOfYears = inputSecondDate[0] - inputFirstDate[0];
-            int diffrence
 
 
 

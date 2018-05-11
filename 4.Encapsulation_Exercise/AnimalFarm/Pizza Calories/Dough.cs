@@ -6,9 +6,12 @@
         private GlobalConstants _bakingTechnique;
         private int _weight;
 
-        public Dough(s)
+        public Dough(GlobalConstants flourType,GlobalConstants bakingTechnique, int weight)
         {
-
+            this._flourType = flourType;
+            this._bakingTechnique = bakingTechnique;
+            this._weight = weight;
         }
+
     }
 }
